@@ -1,18 +1,22 @@
 package estados;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-public class Menu  extends ControleEstados{
+
+public class GameOver extends ControleEstados {
 	private int currentChoice = 0;
 	private String[] options = {
-			"Iniciar Jogo",
-			"Como Jogar",
-			"Sair"
+			"Tentar Novamente",
+			"Voltar ao Menu Principal"
 	};
 	private Color titleColor;
 	private Font titleFont;
 
 	private Font font;	
-	 public Menu(Controlador control) {
+
+   public GameOver(Controlador control) {
 		 this.control = control;
 		 try {
 			 titleColor = new Color(128,0,0);
@@ -22,24 +26,26 @@ public class Menu  extends ControleEstados{
 		 catch(Exception e) {
 			 e.printStackTrace();
 		 }
-	 }
-
+	   
+   }
 	@Override
 	public void init() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void update() {
-	
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("???game",50,70);
-		
+		g.drawString("GAME OVER",250,70);
 		g.setFont(font);
 		for(int i=0;i<options.length;i++) {
 			if(i==currentChoice) {
@@ -47,7 +53,7 @@ public class Menu  extends ControleEstados{
 			}else {
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 145, 140 + i*15);
+			g.drawString(options[i], 250, 250 + i*15);
 		}
 	}
 	private void select() {
@@ -55,15 +61,13 @@ public class Menu  extends ControleEstados{
 			control.setState(Controlador.FASE);
 		}
 		if(currentChoice ==1) {
-			control.setState(Controlador.GAMEOVER);
-		}
-		if(currentChoice ==2) {
-			System.exit(0);
+			control.setState(Controlador.MENU);
 		}
 	}
 
 	@Override
 	public void keyPressed(int k) {
+		// TODO Auto-generated method stub
 		if(k==KeyEvent.VK_ENTER) {
 			select();
 		}
@@ -79,13 +83,12 @@ public class Menu  extends ControleEstados{
 				currentChoice =0;
 				 
 			}
-		}
 	}
-
+	}
 	@Override
 	public void keyReleased(int k) {
-
+		// TODO Auto-generated method stub
+		
 	}
-	}
 
-
+}

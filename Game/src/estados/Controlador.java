@@ -8,19 +8,19 @@ import estados.ControleEstados;
 import estados.Menu;
 public class Controlador {
 	private ArrayList<ControleEstados> gamestates;
-	 private int currentState;
+	 protected int currentState;
 	 Fase fase = new Fase(this);
 	 
 	 public static final int MENU=0;
 	 public static final int FASE=1;	
-	 public static final int GAMEOVERSTATE=2;
+	 public static final int GAMEOVER=2;
 	 public Controlador() {
 		 gamestates = new ArrayList<ControleEstados>();
 		 
 		 currentState = MENU;
 		 gamestates.add(new Menu(this));
 		 gamestates.add(new Fase(this)); 
-		 //gamestates.add(new GameOverState(this));
+		 gamestates.add(new GameOver(this));
 	 }
 	 public void setState (int state) {
 		  currentState = state;
@@ -29,7 +29,7 @@ public class Controlador {
 	 public void update() {
 		 gamestates.get(currentState).update();
 	 }
-	 public void draw(java.awt.Graphics2D g) {
+	 public void draw(java.awt.Graphics g) {
 		 gamestates.get(currentState).draw(g);
 	 }
 	 public void keyPressed(int k) {
